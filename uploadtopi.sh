@@ -21,6 +21,8 @@ ssh -o ControlPath=None \
 if [ $? != 0 ]; then
     ssh pi@$1 "sudo mkdir /root/.ssh; sudo cp /home/pi/.ssh/authorized_keys /root/.ssh/authorized_keys"
 fi
+echo "installing dependencies"
+ssh pi@$1 "pip install python-osc"
 echo "copying across avahi service"
 rsync playrandom.service root@$1:/etc/avahi/services/playrandom.service
 echo "copying across osc server"
