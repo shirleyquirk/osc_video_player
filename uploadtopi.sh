@@ -28,5 +28,5 @@ rsync playrandom.service root@$1:/etc/avahi/services/playrandom.service
 echo "copying across osc server"
 rsync osc_video_player root@$1:/usr/local/bin/osc_video_player
 echo "copying across video files"
-rsync -r --progress ./videos/ pi@$1:~/videos
+rsync -rc --progress ./videos/ pi@$1:~/videos
 
