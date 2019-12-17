@@ -23,11 +23,18 @@ def play_random(unused_addr,args):
 
     print("Playing file: ",random_vid1," on screen 1")
     print("Playing file: ",random_vid2," on screen 2")
-    subprocess.run(["killall","omxplayer.bin"])
-    subprocess.run(["omxplayer",videopath+'/'+random_vid1])
-    subprocess.run(["omxplayer",videopath+'/'+random_vid2,"--display","7"])
+    if (play_random.popen1 is not None):
+        play_random.popen1.terminate()
+    if (play_random.popen2 is not None):
+        play_random.popen2.terminate()
+
+    play_random.popen1 = subprocess.Popen(["omxplayer.bin",videopath+'/'+random_vid1])
+    play_random.popen2 = subprocess.Popen(["omxplayer.bin",videopath+'/'+random_vid2,"--display","7"])
 play_random.videolist = os.listdir(videopath)
 random.shuffle(play_random.videolist)
+play_random.popen1 = None
+play_random.popen2 = None
+
 
 print("Initialized video list with:",play_random.videolist)
 dispatcher = dispatcher.Dispatcher()
