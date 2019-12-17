@@ -23,7 +23,7 @@ def play_random(unused_addr,args):
 
     print("Playing file: ",random_vid1," on screen 1")
     print("Playing file: ",random_vid2," on screen 2")
-    subprocess.run(["killall","omxplayer"])
+    subprocess.run(["killall","omxplayer.bin"])
     subprocess.run(["omxplayer",videopath+'/'+random_vid1])
     subprocess.run(["omxplayer",videopath+'/'+random_vid2,"--display","7"])
 play_random.videolist = os.listdir(videopath)
